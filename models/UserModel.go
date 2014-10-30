@@ -18,11 +18,18 @@ func init() {
 
 func AddUser(u *User) (int64, error) {
 	o := orm.NewOrm()
-	user := new(User)
-	user.Username = u.Username
-	user.Password = u.Password
-	user.Nickname = u.Nickname
+	// user := new(User)
+	// user.Username = u.Username
+	// user.Password = u.Password
+	// user.Nickname = u.Nickname
 
-	id, err := o.Insert(user)
+	id, err := o.Insert(u)
 	return id, err
+}
+
+func FindUser(id int64) (User, error) {
+	o := orm.NewOrm()
+	user := User{Id: id}
+	err := o.Read(&user)
+	return user, err
 }
