@@ -10,16 +10,16 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2014-10-29 16:01:46
+Date: 2014-10-30 12:42:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `article`
+-- Table structure for `tb_article`
 -- ----------------------------
-DROP TABLE IF EXISTS `article`;
-CREATE TABLE `article` (
+DROP TABLE IF EXISTS `tb_article`;
+CREATE TABLE `tb_article` (
   `ID` int(5) NOT NULL,
   `Title` char(100) NOT NULL,
   `Category` char(20) NOT NULL,
@@ -30,14 +30,14 @@ CREATE TABLE `article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of article
+-- Records of tb_article
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `attach`
+-- Table structure for `tb_attach`
 -- ----------------------------
-DROP TABLE IF EXISTS `attach`;
-CREATE TABLE `attach` (
+DROP TABLE IF EXISTS `tb_attach`;
+CREATE TABLE `tb_attach` (
   `ID` int(5) NOT NULL AUTO_INCREMENT,
   `ArticleID` int(5) NOT NULL,
   `AttachImage` char(100) NOT NULL,
@@ -46,14 +46,14 @@ CREATE TABLE `attach` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of attach
+-- Records of tb_attach
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `user`
+-- Table structure for `tb_user`
 -- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE `tb_user` (
   `ID` int(5) NOT NULL AUTO_INCREMENT,
   `UserName` char(10) NOT NULL,
   `PassWord` char(32) NOT NULL,
@@ -62,6 +62,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user
+-- Records of tb_user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'phpfans', 'ef883929b433532c9cdbf22a46529c18', '蛮江');
+INSERT INTO `tb_user` VALUES ('1', 'phpfans', 'ef883929b433532c9cdbf22a46529c18', '蛮江');
