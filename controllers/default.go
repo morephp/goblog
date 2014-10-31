@@ -25,10 +25,9 @@ func (this *MainController) Get() {
 		fmt.Println(err.Error())
 	}
 
-	this.StopRun()
-	// this.Data["Website"] = "beego.me"
-	// this.Data["Email"] = "astaxie@gmail.com"
-	// this.TplNames = "index.tpl"
+	this.Data["Website"] = "beego.me"
+	this.Data["Email"] = "astaxie@gmail.com"
+	this.TplNames = "index.tpl"
 }
 
 func (this *MainController) Read() {
