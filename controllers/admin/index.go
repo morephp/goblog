@@ -17,3 +17,8 @@ func (this *IndexController) Main() {
 	this.Data["WebSiteName"] = "摩尔技术团队博客"
 	this.TplNames = "admin/main.tpl"
 }
+
+func (this *IndexController) Info() {
+	this.Data["WebSiteName"] = "摩尔技术团队博客"
+	this.TplNames = "admin/info.tpl"
+}
