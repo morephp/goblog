@@ -1,13 +1,13 @@
 package admin
 
 import (
-	"github.com/astaxie/beego"
-	// "github.com/morephp/blog/library"
-	// "github.com/morephp/blog/models"
+// "github.com/astaxie/beego"
+// "github.com/morephp/blog/library"
+// "github.com/morephp/blog/models"
 )
 
 type ArticleController struct {
-	beego.Controller
+	baseController
 }
 
 func (this *ArticleController) Index() {

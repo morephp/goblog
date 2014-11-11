@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/font-awesome.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="/static/js/jquery.knob.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -57,7 +58,7 @@
       <div class="navbar-header"> <a class="" href="index.html"><span class="navbar-brand"><span class="fa fa-windows"></span>&nbsp;&nbsp;MorePHP TEAM Blog</span></a></div>
       <div class="navbar-collapse collapse" style="height: 1px;">
     <ul id="main-menu" class="nav navbar-nav navbar-right">
-          <li class="dropdown hidden-xs"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> MorePHP TEAM <i class="fa fa-caret-down"></i> </a>
+          <li class="dropdown hidden-xs"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> {{.NickName}} <i class="fa fa-caret-down"></i> </a>
         <ul class="dropdown-menu">
               <li><a href="./">我的帐号</a></li>
               <li class="divider"></li>

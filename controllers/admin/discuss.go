@@ -1,11 +1,11 @@
 package admin
 
 import (
-	"github.com/astaxie/beego"
+// "github.com/astaxie/beego"
 )
 
 type DiscussController struct {
-	beego.Controller
+	baseController
 }
 
 func (this *DiscussController) Index() {

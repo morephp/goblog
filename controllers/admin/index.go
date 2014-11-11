@@ -1,24 +1,22 @@
 package admin
 
 import (
-	"github.com/astaxie/beego"
+// "github.com/astaxie/beego"
+
 )
 
 type IndexController struct {
-	beego.Controller
+	baseController
 }
 
-func (this *IndexController) Index() {
-	this.Data["WebSiteName"] = "摩尔技术团队博客"
-	this.TplNames = "admin/index.tpl"
+func (this *IndexController) NestPrepare() {
+
 }
 
 func (this *IndexController) Main() {
-	this.Data["WebSiteName"] = "摩尔技术团队博客"
 	this.TplNames = "admin/main.tpl"
 }
 
 func (this *IndexController) Info() {
-	this.Data["WebSiteName"] = "摩尔技术团队博客"
 	this.TplNames = "admin/info.tpl"
 }
