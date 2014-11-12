@@ -18,3 +18,7 @@ type Article struct {
 func init() {
 	orm.RegisterModelWithPrefix("tb_", new(Article))
 }
+
+func (this *Article) Query() orm.QuerySeter {
+	return orm.NewOrm().QueryTable(this)
+}

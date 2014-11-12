@@ -31,7 +31,8 @@ func (this *LoginController) Login() {
 			this.Redirect("/admin/main", 302)
 		}
 	}
-	this.Redirect("/admin", 302)
+	this.showMessage(1, "你输入的用户名或密码错。")
+	this.StopRun()
 }
 
 func (this *LoginController) Logout() {

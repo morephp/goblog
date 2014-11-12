@@ -78,14 +78,14 @@
     <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse"><i class="fa fa-fw  fa-bell-o"></i> 系统信息<i class="fa fa-collapse"></i></a></li>
     <li>
           <ul class="dashboard-menu nav nav-list collapse in">
-        <li ><a href="/admin/main"><span class="fa fa-caret-right"></span> 博客首页</a></li>
+        <li ><a href="/" target="_blank"><span class="fa fa-caret-right"></span> 博客首页</a></li>
         <li><a href="/admin/info"><span class="fa fa-caret-right"></span> 系统信息</a></li>
       </ul>
         </li>
     <li data-popover="true" data-content="" rel="popover" data-placement="right"><a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-pencil-square-o"></i> 内容管理 <span class="label label-info">+3</span></a></li>
     <li>
           <ul class="premium-menu nav nav-list collapse in">
-            <li ><a href="/admin/article/add"><span class="fa fa-caret-right"></span> 发布文章</a></li>
+        <li ><a href="/admin/article/add"><span class="fa fa-caret-right"></span> 发布文章</a></li>
         <li ><a href="/admin/article/list"><span class="fa fa-caret-right"></span> 文章列表</a></li>
         <li ><a href="/admin/article/tag"><span class="fa fa-caret-right"></span> 标签管理</a></li>
       </ul>
@@ -98,22 +98,19 @@
       </ul>
         </li>
     <li><a href="/admin/discuss" class="nav-header"><i class="fa fa-fw fa-comment"></i> 评论管理</a></li>
-    
     <li><a href="#" data-target=".link-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-heart"></i> 友链管理<i class="fa fa-collapse"></i></a> </li>
-      <li>
+    <li>
           <ul class="link-menu nav nav-list collapse">
         <li ><a href="/admin/link/add"><span class="fa fa-caret-right"></span> 添加友链</a></li>
         <li ><a href="/admin/link/list"><span class="fa fa-caret-right"></span> 友链列表</a></li>
       </ul>
         </li>
-        
     <li><a href="#" data-target=".legal-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal"></i> 系统管理<i class="fa fa-collapse"></i></a></li>
     <li>
           <ul class="legal-menu nav nav-list collapse">
         <li ><a href="/admin/config"><span class="fa fa-caret-right"></span> 系统设置</a></li>
       </ul>
         </li>
-        
     <li><a href="/admin/help" class="nav-header"><i class="fa fa-fw fa-question-circle"></i> 系统帮助</a></li>
   </ul>
     </div>
@@ -169,39 +166,46 @@
             <tbody>
                   <tr>
                 <td align="left">主机名称</td>
-                <td>MOREPHP-PC</td>
+                <td>{{.hostname}}</td>
               </tr>
                   <tr>
                 <td align="left">Go语言版本</td>
-                <td>go1.3</td>
+                <td>{{.goversion}} {{.arch}}</td>
               </tr>
                   <tr>
                 <td align="left">操作系统</td>
-                <td>windows (amd64)</td>
+                <td>{{.os}}</td>
               </tr>
                   <tr>
                 <td align="left">CPU数量</td>
-                <td>4</td>
-              </tr>
-                <tr>
-                <td align="left">Beego版本</td>
-                <td>V1.41</td>
-              </tr>
-               <tr>
-                <td align="left">系统版本信息</td>
-                <td><span class="lable">V1.01</span></td>
+                <td>{{.cpunum}}</td>
               </tr>
                 </tbody>
           </table>
             </div>
       </div>
           <div class="col-sm-6 col-md-6">
-        <div class="panel panel-default"> <a href="#widget1container" class="panel-heading" data-toggle="collapse">最新博文</a>
-              <div id="widget1container" class="panel-body collapse in">
-            <h2>这是第一篇文章</h2>
-            <p>感谢大家！</p>
-            <p>２０１４.１１.２０</p>
-          </div>
+        <div class="panel panel-default"> <a href="#widget1container" class="panel-heading" data-toggle="collapse">系统信息</a>
+              <table class="table table-bordered table-striped">
+            <tr>
+                  <td align="left">Beego版本</td>
+                  <td>{{.beegoversion}}</td>
+                </tr>
+            <tbody>
+                  <tr>
+                <td align="left">版本信息</td>
+                <td><span class="lable">{{.version}}</span></td>
+              </tr>
+                  <tr>
+                <td align="left">用户数量</td>
+                <td><span class="lable">{{.usernum}}</span></td>
+              </tr>
+                  <tr>
+                <td align="left">博客数量</td>
+                <td><span class="lable">{{.blognum}}</span></td>
+              </tr>
+                   </tbody>
+          </table>
             </div>
       </div>
         </div>
