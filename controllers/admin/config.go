@@ -10,5 +10,5 @@ type ConfigController struct {
 
 func (this *ConfigController) Index() {
 
-	this.TplNames = "admin/link.tpl"
+	this.TplNames = "admin/config.tpl"
 }

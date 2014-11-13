@@ -22,6 +22,9 @@ func (this *IndexController) Main() {
 	this.Data["usernum"], _ = new(models.User).Query().Count()
 	this.Data["blognum"], _ = new(models.Article).Query().Count()
 	this.TplNames = "admin/main.tpl"
+	this.Layout = "admin/layout.tpl"
+	this.LayoutSections = make(map[string]string)
+	this.LayoutSections["Sidebar"] = "admin/layout_sidebar.tpl"
 }
 
 func (this *IndexController) Info() {

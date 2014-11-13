@@ -11,11 +11,11 @@ type UserController struct {
 }
 
 func (this *UserController) Index() {
-	this.TplNames = "admin/users.tpl"
+	this.TplNames = "admin/user.tpl"
 }
 
 func (this *UserController) Add() {
-	this.Redirect("/admin/main", 302)
+	this.TplNames = "admin/user_add.tpl"
 }
 
 func (this *UserController) Update() {

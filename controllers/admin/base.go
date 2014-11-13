@@ -18,7 +18,6 @@ func (this *baseController) Prepare() {
 
 	this.Data["WebSiteName"] = "MorePHP TEAM Blog"
 	this.Data["NickName"] = this.GetSession("nickname")
-
 }
 
 func (this *baseController) checkPermission() {

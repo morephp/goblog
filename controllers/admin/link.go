@@ -9,7 +9,6 @@ type LinkController struct {
 }
 
 func (this *LinkController) Index() {
-
 	this.TplNames = "admin/link.tpl"
 }
 
