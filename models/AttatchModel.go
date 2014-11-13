@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 type Attach struct {
@@ -14,4 +13,36 @@ type Attach struct {
 
 func init() {
 	orm.RegisterModelWithPrefix("tb_", new(Attach))
+}
+
+func (this *Attach) Insert() error {
+	if _, err := orm.NewOrm().Insert(this); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *Attach) Read(fields ...string) error {
+	if err := orm.NewOrm().Read(this, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *Attach) Update(fields ...string) error {
+	if _, err := orm.NewOrm().Update(this, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *Attach) Delete() error {
+	if _, err := orm.NewOrm().Delete(this); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *Attach) Query() orm.QuerySeter {
+	return orm.NewOrm().QueryTable(this)
 }

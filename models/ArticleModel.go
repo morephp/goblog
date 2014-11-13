@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql"
 	"time"
 )
 
@@ -21,4 +20,32 @@ func init() {
 
 func (this *Article) Query() orm.QuerySeter {
 	return orm.NewOrm().QueryTable(this)
+}
+
+func (this *Article) Insert() error {
+	if _, err := orm.NewOrm().Insert(this); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *Article) Delete() error {
+	if _, err := orm.NewOrm().Delete(this); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *Article) Update(fields ...string) error {
+	if _, err := orm.NewOrm().Update(this, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (this *Article) Read(fields ...string) error {
+	if err := orm.NewOrm().Read(this, fields...); err != nil {
+		return err
+	}
+	return nil
 }
