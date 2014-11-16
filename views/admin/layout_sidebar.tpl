@@ -3,7 +3,7 @@
     <li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse"><i class="fa fa-fw  fa-bell-o"></i> 系统信息<i class="fa fa-collapse"></i></a></li>
     <li>
           <ul class="dashboard-menu nav nav-list collapse in">
-        <li ><a href="/admin/main"><span class="fa fa-caret-right"></span> 博客首页</a></li>
+        <li ><a href="/" target="_blank"><span class="fa fa-caret-right"></span> 博客首页</a></li>
         <li><a href="/admin/info"><span class="fa fa-caret-right"></span> 系统信息</a></li>
       </ul>
         </li>
