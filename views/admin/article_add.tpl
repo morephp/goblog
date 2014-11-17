@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/static/js/bootstrap-markdown.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap-markdown.min.css">
 <div class="content">
       <div class="header">
     <div class="stats">
@@ -10,6 +12,11 @@
         </ul>
   </div>
       <div class="main-content">
+      <form>
+    <textarea name="content" data-provide="markdown" rows="10"></textarea>
+    <hr/>
+    <button type="submit" class="btn">提交</button>
+  </form> 
         <footer>
           <hr>
           <p class="pull-right">&nbsp;</p>

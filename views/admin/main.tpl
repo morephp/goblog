@@ -1,3 +1,9 @@
+    <script src="/static/js/jquery.knob.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".knob").knob();
+        });
+    </script>
 <div class="content">
       <div class="header">
     <div class="stats">

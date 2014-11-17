@@ -11,31 +11,11 @@
     <link rel="stylesheet" href="/static/css/font-awesome.css">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="/static/js/jquery.knob.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function() {
-            $(".knob").knob();
-        });
-    </script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/theme.css">
     <link rel="stylesheet" type="text/css" href="/static/css/premium.css">
     </head>
     <body class=" theme-blue">
-<script type="text/javascript">
-        $(function() {
-            var match = document.cookie.match(new RegExp('color=([^;]+)'));
-            if(match) var color = match[1];
-            if(color) {
-                $('body').removeClass(function (index, css) {
-                    return (css.match (/\btheme-\S+/g) || []).join(' ')
-                })
-                $('body').addClass('theme-' + color);
-            }
-
-            $('[data-popover="true"]').popover({html: true});
-            
-        });
-    </script>
 <style type="text/css">
         #line-chart {
             height:300px;
@@ -47,13 +27,6 @@
             color: #fff;
         }
     </style>
-<script type="text/javascript">
-        $(function() {
-            var uls = $('.sidebar-nav > ul > *').clone();
-            uls.addClass('visible-xs');
-            $('#main-menu').append(uls.clone());
-        });
-    </script>
 <div class="navbar navbar-default" role="navigation">
       <div class="navbar-header"> <a class="" href="index.html"><span class="navbar-brand"><span class="fa fa-windows"></span>&nbsp;&nbsp;MorePHP TEAM Blog</span></a></div>
       <div class="navbar-collapse collapse" style="height: 1px;">
@@ -75,12 +48,5 @@
 </div>
 {{.Sidebar}}
 {{.LayoutContent}}
-<script src="/static/js/bootstrap.js"></script> 
-<script type="text/javascript">
-        $("[rel=tooltip]").tooltip();
-        $(function() {
-            $('.demo-cancel-click').click(function(){return false;});
-        });
-    </script>
 </body>
 </html>
