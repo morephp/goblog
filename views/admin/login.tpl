@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/static/css/bootstrapValidator.css"/>
 <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/static/js/bootstrap.js" type="text/javascript"></script>
-<script type="text/javascript" src="../static/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrapValidator.min.js"></script>
    
 </head>
 <body class=" theme-blue">

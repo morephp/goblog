@@ -1,7 +1,17 @@
-<div class="main-content">
-            
+<div class="content">
+      <div class="header">
+    <div class="stats">
+          <p class="stat">&nbsp;</p>
+        </div>
+    <h1 class="page-title">MorePHP TEAM</h1>
+    <ul class="breadcrumb">
+          <li><a href="/admin/main">后台界面</a> </li>
+          <li class="active">文章列表</li>
+        </ul>
+  </div>
+<div class="main-content">        
 <div class="btn-toolbar list-toolbar">
-    <button class="btn btn-primary"><i class="fa fa-plus"></i> 添加用户</button>
+<button class="btn btn-primary"><i class="fa fa-plus"></i> 添加用户</button>
   <div class="btn-group">
   </div>
 </div>
