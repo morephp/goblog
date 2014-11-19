@@ -7,7 +7,7 @@
         <li><a href="/admin/info"><span class="fa fa-caret-right"></span> 系统信息</a></li>
       </ul>
         </li>
-    <li data-popover="true" data-content="" rel="popover" data-placement="right"><a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-pencil-square-o"></i> 内容管理 <span class="label label-info">+3</span></a></li>
+    <li data-popover="true" data-content="" rel="popover" data-placement="right"><a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-pencil-square-o"></i> 内容管理 <span class="label label-info">+{{.ArticleCount}}</span></a></li>
     <li>
           <ul class="premium-menu nav nav-list collapse in">
             <li ><a href="/admin/article/add"><span class="fa fa-caret-right"></span> 发布文章</a></li>

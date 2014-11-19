@@ -1,7 +1,9 @@
 package admin
 
 import (
-// "github.com/russross/blackfriday"
+	"github.com/astaxie/beego/utils/pagination"
+	"github.com/morephp/blog/models"
+	"time"
 )
 
 type ArticleController struct {
@@ -9,6 +11,12 @@ type ArticleController struct {
 }
 
 func (this *ArticleController) Index() {
+	postsPerPage := 20
+	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, 11)
+
+	// fetch the next 20 posts
+	// this.Data["posts"] = pagination.ListPostsByOffsetAndLimit(paginator.Offset(), postsPerPage)
+
 	this.Layout = "admin/layout.tpl"
 	this.LayoutSections = make(map[string]string)
 	this.LayoutSections["Sidebar"] = "admin/layout_sidebar.tpl"
@@ -17,10 +25,17 @@ func (this *ArticleController) Index() {
 
 func (this *ArticleController) Add() {
 	if this.Ctx.Input.IsPost() {
-
-		// content := blackfriday.MarkdownBasic([]byte(this.GetString("content")))
-		// this.Data["Content"] = string(content)
-		// this.TplNames = "admin/test.tpl"
+		article := models.Article{}
+		article.Content = this.GetString("content")
+		article.Category = this.GetString("category")
+		article.Title = this.GetString("title")
+		article.PushTime = time.Now()
+		if article.Insert() != nil {
+			this.showMessage(0, "添加文章失败,请与管理员联系.")
+		} else {
+			this.showMessage(1, "文章增加成功.")
+		}
+		this.StopRun()
 		return
 	}
 	this.Layout = "admin/layout.tpl"

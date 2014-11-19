@@ -2,6 +2,7 @@ package admin
 
 import (
 	"github.com/astaxie/beego"
+	"github.com/morephp/blog/models"
 )
 
 type baseController struct {
@@ -15,7 +16,9 @@ func (this *baseController) Prepare() {
 	this.modulesName = "admin"
 	this.controllerName, this.actionName = this.GetControllerAndAction()
 	this.checkPermission()
-
+	article := models.Article{}
+	count, _ := article.Query().Count()
+	this.Data["ArticleCount"] = count
 	this.Data["WebSiteName"] = "MorePHP TEAM Blog"
 	this.Data["NickName"] = this.GetSession("nickname")
 }
