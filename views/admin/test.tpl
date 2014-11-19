@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap-markdown.min.css">
     </head>
     <body>
- <textarea name="content" class="form-control" data-provide="markdown" rows="10" data-width="800" data-iconlibrary="fa" >{{.Content}}</textarea>
-
+ {{str2html .Content}}
 <div data-provide="markdown-editable">
          
 </div>
