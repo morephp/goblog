@@ -23,33 +23,26 @@
         </tr>
       </thead>
       <tbody>
+         {{range $key, $val := .posts}}
         <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Tompson</td>
-          <td>the_mark7</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><a href="user.html"><i class="fa fa-pencil"></i></a> <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a></td>
+          <td>{{$val.Id}}</td>
+          <td>{{$val.Title}}</td>
+          <td>{{$val.Category}}</td>
+          <td>{{$val.Times}}</td>
+          <td>{{$val.Author}}</td>
+          <td>{{$val.PushTime}}</td>
+          <td><a href="/admin/article/update/?id={{$val.Id}}"><i class="fa fa-pencil"></i></a> <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a></td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Ashley</td>
-          <td>Jacobs</td>
-          <td>ash11927</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td><a href="user.html"><i class="fa fa-pencil"></i></a> <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a></td>
-        </tr>
+        {{end}}
       </tbody>
     </table>
-     {{if .paginator.HasPages}}
+{{if .paginator.HasPages}}
  <ul class="pagination pagination">
      {{if .paginator.HasPrev}}
-         <li><a href="{{.paginator.PageLinkFirst}}">{{ i18n .Lang "paginator.first_page"}}</a></li>
+         <li><a href="{{.paginator.PageLinkFirst}}">首页</a></li>
          <li><a href="{{.paginator.PageLinkPrev}}">&laquo;</a></li>
      {{else}}
-         <li class="disabled"><a>{{ i18n .Lang "paginator.first_page"}}</a></li>
+         <li class="disabled"><a>首页</a></li>
          <li class="disabled"><a>&laquo;</a></li>
      {{end}}
      {{range $index, $page := .paginator.Pages}}
@@ -59,10 +52,10 @@
      {{end}}
      {{if .paginator.HasNext}}
          <li><a href="{{.paginator.PageLinkNext}}">&raquo;</a></li>
-         <li><a href="{{.paginator.PageLinkLast}}">{{ i18n .Lang "paginator.last_page"}}</a></li>
+         <li><a href="{{.paginator.PageLinkLast}}">末页</a></li>
      {{else}}
          <li class="disabled"><a>&raquo;</a></li>
-         <li class="disabled"><a>{{ i18n .Lang "paginator.last_page"}}</a></li>
+         <li class="disabled"><a>末页</a></li>
      {{end}}
  </ul>
  {{end}}

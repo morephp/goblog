@@ -10,6 +10,7 @@ type Article struct {
 	Title    string `orm:"size(100)"`
 	Category string `orm:"size(100)"`
 	Content  string `orm:"type(text)"`
+	Author   string `orm:size(16)`
 	Times    int64
 	PushTime time.Time `orm:"auto_now_add;type(datetime)"`
 }
