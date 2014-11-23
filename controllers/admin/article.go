@@ -82,11 +82,16 @@ func (this *ArticleController) Update() {
 	this.TplNames = "admin/article_update.tpl"
 }
 
-func (this *ArticleController) Del() {
-	this.Layout = "admin/layout.tpl"
-	this.LayoutSections = make(map[string]string)
-	this.LayoutSections["Sidebar"] = "admin/layout_sidebar.tpl"
-	this.TplNames = "admin/article_del.tpl"
+func (this *ArticleController) Delete() {
+	article := models.Article{}
+	article.Id, _ = strconv.ParseInt(this.GetString("id"), 10, 32)
+	if article.Delete() != nil {
+		this.showMessage(0, "删除文章失败,请与管理员联系.")
+	} else {
+		this.showMessage(1, "删除修改成功.")
+	}
+	this.StopRun()
+	return
 }
 func (this *ArticleController) Tag() {
 	this.Layout = "admin/layout.tpl"

@@ -28,9 +28,7 @@
       <div class="form-group">
         <label for="input" class="col-sm-1 control-label">内 容</label>
         <div class="col-sm-11">
-         <textarea name="content" class="form-control" data-provide="markdown" rows="10" data-width="800" data-iconlibrary="fa" >
-         {{.Content|html2str}}
-         </textarea>
+       <textarea name="content" class="form-control" data-provide="markdown" rows="10" data-width="800" data-iconlibrary="fa" >{{.Content}}</textarea>
         </div>
       </div>
       <input name="id" type="hidden" value="{{.Id}}" />

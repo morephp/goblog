@@ -31,7 +31,7 @@
           <td>{{$val.Times}}</td>
           <td>{{$val.Author}}</td>
           <td>{{$val.PushTime}}</td>
-          <td><a href="/admin/article/update/?id={{$val.Id}}"><i class="fa fa-pencil"></i></a> <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a></td>
+          <td><a href="/admin/article/update/?id={{$val.Id}}"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" onclick="dodel({{$val.Id}})" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a></td>
         </tr>
         {{end}}
       </tbody>
@@ -66,3 +66,30 @@
     </footer>
   </div>
 </div>
+ <div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">删除消息</h3>
+        </div>
+        <div class="modal-body">
+            <p class="error-text"><i class="fa fa-warning modal-icon"></i>你是否真的要删除该文章?<br>删除后将不能恢复.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">取 消</button>
+            <a href="#" class="btn btn-danger" id="delete">删 除</a>
+        </div>
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function dodel(id){        
+        $("#delete").attr('href','/admin/article/del/?id='+id);
+        $('.modal').modal('show');
+    }
+    $(function() {
+        $('.btn btn-default').click(function(){return false;});     
+    });
+     
+</script>

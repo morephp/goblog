@@ -1,78 +1,28 @@
-<!DOCTYPE html>
 
-<html>
-  	<head>
-    	<title>Beego</title>
-    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-		<style type="text/css">
-			body {
-				margin: 0px;
-				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-				font-size: 14px;
-				line-height: 20px;
-				color: rgb(51, 51, 51);
-				background-color: rgb(255, 255, 255);
-			}
-
-			.hero-unit {
-				padding: 60px;
-				margin-bottom: 30px;
-				border-radius: 6px 6px 6px 6px;
-			}
-
-			.container {
-				width: 940px;
-				margin-right: auto;
-				margin-left: auto;
-			}
-
-			.row {
-				margin-left: -20px;
-			}
-
-			h1 {
-				margin: 10px 0px;
-				font-family: inherit;
-				font-weight: bold;
-				text-rendering: optimizelegibility;
-			}
-
-			.hero-unit h1 {
-				margin-bottom: 0px;
-				font-size: 60px;
-				line-height: 1;
-				letter-spacing: -1px;
-				color: inherit;
-			}
-
-			.description {
-				padding-top: 5px;
-				padding-left: 5px;
-				font-size: 18px;
-				font-weight: 200;
-				line-height: 30px;
-				color: inherit;
-			}
-
-			p {
-				margin: 0px 0px 10px;
-			}
-		</style>
-	</head>
+<!doctype html>
+<html lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <title>MorePHP TEAM Blog - 后台管理</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/premium.css">
+    </head>
 
   	<body>
   		<header class="hero-unit" style="background-color:#A9F16C">
 			<div class="container">
 			<div class="row">
 			  <div class="hero-text">
-			    <h1>Welcome to Beego!</h1>
-			    <p class="description">
-			    	Beego is a simple & powerful Go web framework which is inspired by tornado and sinatra.
-			    <br />
-			    	Official website: <a href="http://{{.Website}}">{{.Website}}</a>
-			    <br />
-			    	Contact me: {{.Email}}
+			    {{.Content|str2html}}
 			    </p>
 			  </div>
 			</div>

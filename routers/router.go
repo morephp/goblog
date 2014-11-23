@@ -22,7 +22,7 @@ func init() {
 	beego.Router("/admin/article/list", &admin.ArticleController{}, "*:Index")
 	beego.Router("/admin/article/add", &admin.ArticleController{}, "*:Add")
 	beego.Router("/admin/article/update", &admin.ArticleController{}, "*:Update")
-	beego.Router("/admin/article/del", &admin.ArticleController{}, "*:Del")
+	beego.Router("/admin/article/del", &admin.ArticleController{}, "*:Delete")
 	beego.Router("/admin/article/tag", &admin.ArticleController{}, "*:Tag")
 
 	beego.Router("/admin/discuss", &admin.DiscussController{}, "*:Index")
