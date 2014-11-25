@@ -1,10 +1,10 @@
 package admin
 
 import (
-	// "github.com/astaxie/beego/session"
-	"github.com/astaxie/beego/utils/pagination"
 	"github.com/morephp/blog/models"
 	"strconv"
+	// "strings"
+	"github.com/astaxie/beego"
 	"time"
 )
 
@@ -13,13 +13,33 @@ type ArticleController struct {
 }
 
 func (this *ArticleController) Index() {
+
 	article := models.Article{}
 	articles := []*models.Article{}
-	totalNum, _ := article.Query().Count()
-	postsPerPage := 10
-	paginator := pagination.SetPaginator(this.Ctx, postsPerPage, totalNum)
-	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
+
+	// totalNum, _ := article.Query().Count()
+	// postsPerPage := 10
+	// paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
+
+	article.Query().RelatedSel().All(&articles)
+
+	for _, v := range articles {
+
+		for _, vv := range v.Tags {
+			beego.Info(vv)
+		}
+	}
+
+	// .Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
+	//
+
 	this.Data["posts"] = articles
+
+	for _, v := range articles {
+
+		beego.Info(v.Tags)
+	}
+
 	this.Layout = "admin/layout.tpl"
 	this.LayoutSections = make(map[string]string)
 	this.LayoutSections["Sidebar"] = "admin/layout_sidebar.tpl"
@@ -30,14 +50,17 @@ func (this *ArticleController) Add() {
 	if this.Ctx.Input.IsPost() {
 		article := models.Article{}
 		article.Content = this.GetString("content")
-		article.Category = this.GetString("category")
 		article.Title = this.GetString("title")
 		if author, ok := this.GetSession("nickname").(string); ok {
 			article.Author = author
 		}
 		article.PushTime = time.Now()
 		article.Times = 1
-		if article.Insert() != nil {
+
+		tag := models.Tag{}
+		tag.Name = this.GetString("tags")
+
+		if err := models.AddArticle(&article, &tag); err != nil {
 			this.showMessage(0, "添加文章失败,请与管理员联系.")
 		} else {
 			this.showMessage(1, "文章增加成功.")
@@ -56,7 +79,7 @@ func (this *ArticleController) Update() {
 	if this.Ctx.Input.IsPost() {
 		article.Id, _ = this.GetInt64("id")
 		article.Content = this.GetString("content")
-		article.Category = this.GetString("category")
+		// article.Tags = this.GetString("tags")
 		article.Title = this.GetString("title")
 		if author, ok := this.GetSession("nickname").(string); ok {
 			article.Author = author
@@ -73,7 +96,7 @@ func (this *ArticleController) Update() {
 	article.Id, _ = strconv.ParseInt(this.GetString("id"), 10, 32)
 	article.Read()
 	this.Data["Title"] = article.Title
-	this.Data["Category"] = article.Category
+	this.Data["Tags"] = article.Tags
 	this.Data["Content"] = article.Content
 	this.Data["Id"] = article.Id
 	this.Layout = "admin/layout.tpl"

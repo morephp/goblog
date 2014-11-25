@@ -15,7 +15,7 @@
         <tr>
           <th>#</th>
           <th>标 题</th>
-          <th>类 别</th>
+          <th>标 签</th>
           <th>点击量</th>
           <th>发布人</th>
           <th>发布时间</th>
@@ -27,11 +27,16 @@
         <tr>
           <td>{{$val.Id}}</td>
           <td>{{$val.Title}}</td>
-          <td>{{$val.Category}}</td>
+          <td>
+            {{range $k, $v := $val.Tags}}
+              {{$v.Name}}
+            {{end}}
+          </td>
           <td>{{$val.Times}}</td>
           <td>{{$val.Author}}</td>
           <td>{{$val.PushTime}}</td>
           <td><a href="/admin/article/update/?id={{$val.Id}}"><i class="fa fa-pencil"></i></a> <a href="javascript:void(0)" onclick="dodel({{$val.Id}})" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a></td>
+            }
         </tr>
         {{end}}
       </tbody>
