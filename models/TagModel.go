@@ -6,9 +6,9 @@ import (
 
 type Tag struct {
 	Id       int64
-	Articles *Article `orm:"rel(fk)"`
 	Name     string
 	Count    int
+	Articles []*Article `orm:"rel(m2m)"`
 }
 
 func init() {

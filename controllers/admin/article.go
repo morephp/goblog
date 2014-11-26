@@ -23,23 +23,9 @@ func (this *ArticleController) Index() {
 
 	article.Query().RelatedSel().All(&articles)
 
-	for _, v := range articles {
-
-		for _, vv := range v.Tags {
-			beego.Info(vv)
-		}
-	}
-
 	// .Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
 	//
-
 	this.Data["posts"] = articles
-
-	for _, v := range articles {
-
-		beego.Info(v.Tags)
-	}
-
 	this.Layout = "admin/layout.tpl"
 	this.LayoutSections = make(map[string]string)
 	this.LayoutSections["Sidebar"] = "admin/layout_sidebar.tpl"
@@ -57,10 +43,7 @@ func (this *ArticleController) Add() {
 		article.PushTime = time.Now()
 		article.Times = 1
 
-		tag := models.Tag{}
-		tag.Name = this.GetString("tags")
-
-		if err := models.AddArticle(&article, &tag); err != nil {
+		if err := models.AddArticle(&article, this.GetString("tags")); err != nil {
 			this.showMessage(0, "添加文章失败,请与管理员联系.")
 		} else {
 			this.showMessage(1, "文章增加成功.")

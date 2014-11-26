@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"github.com/astaxie/beego/orm"
 	"strings"
 	"time"
@@ -14,7 +13,7 @@ type Article struct {
 	Author   string `orm:size(16)`
 	Times    int64
 	PushTime time.Time `orm:"auto_now_add;type(datetime)"`
-	Tags     []*Tag    `orm:"reverse(many)"`
+	Tags     []*Tag    `orm:"rel(m2m)"`
 }
 
 func init() {
@@ -54,24 +53,20 @@ func (this *Article) Read(fields ...string) error {
 }
 
 /**
- * Controller add article
+ *  add article Controller
  */
-func AddArticle(article *Article, tag *Tag) error {
+func AddArticle(article *Article, param string) error {
 	if err := article.Insert(); err != nil {
 		return err
 	}
-	tags := strings.Split(tag.Name, ",")
+	tag := Tag{}
+	tags := strings.Split(param, ",")
 	for _, v := range tags {
-		query := tag.Query().Filter("Name", v)
-		if query.Exist() {
-			query.Update(orm.Params{"count": orm.ColValue(orm.Col_Add, 1)})
-			query.One(tag)
-		} else {
-			tag.Name = v
-			tag.Count = 1
-			err := tag.Insert()
-			fmt.Println(err)
-		}
+		tag.Name = v
+		tag.Count = 1
+		tag.Insert()
+		orm.NewOrm().QueryM2M(&tag, "Articles").Add(article)
+		orm.NewOrm().QueryM2M(article, "Tags").Add(&tag)
 	}
 	return nil
 }
