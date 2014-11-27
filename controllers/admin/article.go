@@ -3,8 +3,6 @@ package admin
 import (
 	"github.com/morephp/blog/models"
 	"strconv"
-	// "strings"
-	"github.com/astaxie/beego"
 	"time"
 )
 
@@ -14,18 +12,7 @@ type ArticleController struct {
 
 func (this *ArticleController) Index() {
 
-	article := models.Article{}
-	articles := []*models.Article{}
-
-	// totalNum, _ := article.Query().Count()
-	// postsPerPage := 10
-	// paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
-
-	article.Query().RelatedSel().All(&articles)
-
-	// .Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
-	//
-	this.Data["posts"] = articles
+	this.Data["posts"] = models.ListArticle(this.Ctx)
 	this.Layout = "admin/layout.tpl"
 	this.LayoutSections = make(map[string]string)
 	this.LayoutSections["Sidebar"] = "admin/layout_sidebar.tpl"
