@@ -8,7 +8,6 @@ type Tag struct {
 	Id       int64
 	Name     string
 	Count    int
-	Articles []*Article `orm:"rel(m2m)"`
 }
 
 func init() {

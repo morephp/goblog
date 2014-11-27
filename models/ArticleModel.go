@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/astaxie/beego"
+	// "github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/utils/pagination"
@@ -24,7 +24,7 @@ func init() {
 }
 
 func (this *Article) Query() orm.QuerySeter {
-	return orm.NewOrm().QueryTable(this).RelatedSel()
+	return orm.NewOrm().QueryTable(this)
 }
 
 func (this *Article) Insert() error {
@@ -68,7 +68,6 @@ func AddArticle(article *Article, param string) error {
 		tag.Name = v
 		tag.Count = 1
 		tag.Insert()
-		orm.NewOrm().QueryM2M(&tag, "Articles").Add(article)
 		orm.NewOrm().QueryM2M(article, "Tags").Add(&tag)
 	}
 	return nil
@@ -81,11 +80,9 @@ func ListArticle(ctx *context.Context) *[]Article {
 	postsPerPage := 1
 	paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
 	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
-	// for _, article := range articles {
-	// 	orm.NewOrm().LoadRelated(&article, "Tags")
-	// 	beego.Info(article)
-	// }
-	beego.Info(articles)
 
+	for _, article := range articles {
+		orm.NewOrm().LoadRelated(&article, "Tags")
+	}
 	return &articles
 }
