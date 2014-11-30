@@ -2,10 +2,12 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego"
 )
 
 type Tag struct {
-	Id       int64
+	Id       int
+	Article *Article `orm:"rel(fk)"`
 	Name     string
 	Count    int
 }
@@ -45,3 +47,18 @@ func (this *Tag) Read(fields ...string) error {
 	}
 	return nil
 }
+
+
+func ListTags() {
+	tags := []Tag{}
+	qs := orm.NewOrm().QueryTable("tb_tag").OrderBy("-Article__Id").RelatedSel()
+    cnt, err := qs.All(&tags)
+    if err == nil {
+       beego.Info("Queried", cnt, "tags")
+        for _, tag := range tags {
+            beego.Info(tag.Article)
+        }
+    }
+
+}
+

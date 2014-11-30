@@ -1,7 +1,6 @@
 package models
 
 import (
-	// "github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/utils/pagination"
@@ -10,13 +9,13 @@ import (
 )
 
 type Article struct {
-	Id       int64
+	Id       int    `orm:"auto"`
 	Title    string `orm:"size(100)"`
 	Content  string `orm:"type(text)"`
 	Author   string `orm:size(16)`
-	Times    int64
+	Times    int
 	PushTime time.Time `orm:"auto_now_add;type(datetime)"`
-	Tags     []*Tag    `orm:"rel(m2m)"`
+	Tags     []*Tag    `orm:"reverse(many)"`
 }
 
 func init() {
@@ -67,13 +66,14 @@ func AddArticle(article *Article, param string) error {
 	for _, v := range tags {
 		tag.Name = v
 		tag.Count = 1
+		tag.Article = article
 		tag.Insert()
-		orm.NewOrm().QueryM2M(article, "Tags").Add(&tag)
 	}
 	return nil
 }
 
 func ListArticle(ctx *context.Context) *[]Article {
+
 	article := Article{}
 	articles := []Article{}
 	totalNum, _ := article.Query().Count()
@@ -81,8 +81,9 @@ func ListArticle(ctx *context.Context) *[]Article {
 	paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
 	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
 
-	for _, article := range articles {
+	for k, article := range articles {
 		orm.NewOrm().LoadRelated(&article, "Tags")
+		articles[k] = article
 	}
 	return &articles
 }

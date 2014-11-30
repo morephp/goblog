@@ -2,7 +2,6 @@ package admin
 
 import (
 	"github.com/morephp/blog/models"
-	"strconv"
 	"time"
 )
 
@@ -47,7 +46,7 @@ func (this *ArticleController) Add() {
 func (this *ArticleController) Update() {
 	article := models.Article{}
 	if this.Ctx.Input.IsPost() {
-		article.Id, _ = this.GetInt64("id")
+		article.Id, _ = this.GetInt("id")
 		article.Content = this.GetString("content")
 		// article.Tags = this.GetString("tags")
 		article.Title = this.GetString("title")
@@ -63,7 +62,7 @@ func (this *ArticleController) Update() {
 		return
 	}
 
-	article.Id, _ = strconv.ParseInt(this.GetString("id"), 10, 32)
+	article.Id, _ = this.GetInt("id")
 	article.Read()
 	this.Data["Title"] = article.Title
 	this.Data["Tags"] = article.Tags
@@ -77,7 +76,7 @@ func (this *ArticleController) Update() {
 
 func (this *ArticleController) Delete() {
 	article := models.Article{}
-	article.Id, _ = strconv.ParseInt(this.GetString("id"), 10, 32)
+	article.Id, _ = this.GetInt("id")
 	if article.Delete() != nil {
 		this.showMessage(0, "删除文章失败,请与管理员联系.")
 	} else {
