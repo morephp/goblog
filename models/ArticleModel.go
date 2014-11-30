@@ -54,6 +54,10 @@ func (this *Article) Read(fields ...string) error {
 	return nil
 }
 
+func (this *Article) LoadRelated(article *Article) {
+	orm.NewOrm().LoadRelated(article, "Tags")
+}
+
 /**
  *  add article Controller
  */
@@ -73,11 +77,10 @@ func AddArticle(article *Article, param string) error {
 }
 
 func ListArticle(ctx *context.Context) *[]Article {
-
 	article := Article{}
 	articles := []Article{}
 	totalNum, _ := article.Query().Count()
-	postsPerPage := 1
+	postsPerPage := 10
 	paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
 	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
 

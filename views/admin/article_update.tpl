@@ -20,9 +20,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="input" class="col-sm-1 control-label">分类标签</label>
+        <label for="input" class="col-sm-1 control-label">标签</label>
         <div class="col-sm-11">
-          <input type="text" class="form-control" name="category" placeholder="分类标签" value="{{.Category}}">
+          <input type="text" class="form-control" name="tag" placeholder="标签" value="{{range $k, $v := .Tags}}{{$v.Name}},{{end}}">
         </div>
       </div>
       <div class="form-group">

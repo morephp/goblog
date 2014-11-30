@@ -1,6 +1,7 @@
 package admin
 
 import (
+	// "github.com/astaxie/beego"
 	"github.com/morephp/blog/models"
 	"time"
 )
@@ -64,6 +65,7 @@ func (this *ArticleController) Update() {
 
 	article.Id, _ = this.GetInt("id")
 	article.Read()
+	article.LoadRelated(&article)
 	this.Data["Title"] = article.Title
 	this.Data["Tags"] = article.Tags
 	this.Data["Content"] = article.Content
