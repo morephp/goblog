@@ -15,7 +15,7 @@ type Article struct {
 	Author   string `orm:size(16)`
 	Times    int
 	PushTime time.Time `orm:"auto_now_add;type(datetime)"`
-	Tags     []*Tag    `orm:"reverse(many)"`
+	Tag      []*Tag    `orm:"rel(m2m);on_delete(on_delete)"`
 }
 
 func init() {
@@ -55,7 +55,7 @@ func (this *Article) Read(fields ...string) error {
 }
 
 func (this *Article) LoadRelated(article *Article) {
-	orm.NewOrm().LoadRelated(article, "Tags")
+	orm.NewOrm().LoadRelated(article, "Tag")
 }
 
 /**
@@ -68,10 +68,15 @@ func AddArticle(article *Article, param string) error {
 	tag := Tag{}
 	tags := strings.Split(param, ",")
 	for _, v := range tags {
-		tag.Name = v
-		tag.Count = 1
-		tag.Article = article
-		tag.Insert()
+		if tag.Query().Filter("name", v).Exist() {
+			tag.Query().Filter("name", v).One(&tag)
+		} else {
+			tag.Name = v
+			tag.Insert()
+		}
+
+		orm.NewOrm().QueryM2M(article, "Tag").Add(&tag)
+		orm.NewOrm().QueryM2M(&tag, "Article").Add(article)
 	}
 	return nil
 }
@@ -85,7 +90,7 @@ func ListArticle(ctx *context.Context) *[]Article {
 	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
 
 	for k, article := range articles {
-		orm.NewOrm().LoadRelated(&article, "Tags")
+		orm.NewOrm().LoadRelated(&article, "Tag")
 		articles[k] = article
 	}
 	return &articles

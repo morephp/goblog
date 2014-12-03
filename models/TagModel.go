@@ -1,15 +1,16 @@
 package models
 
 import (
+	// "github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/orm"
-	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/utils/pagination"
 )
 
 type Tag struct {
-	Id       int
-	Article *Article `orm:"rel(fk)"`
-	Name     string
-	Count    int
+	Id      int
+	Article []*Article `orm:"rel(m2m)"`
+	Name    string
 }
 
 func init() {
@@ -48,17 +49,12 @@ func (this *Tag) Read(fields ...string) error {
 	return nil
 }
 
-
-func ListTags() {
+func ListTags(ctx *context.Context) *[]Tag {
 	tags := []Tag{}
-	qs := orm.NewOrm().QueryTable("tb_tag").OrderBy("-Article__Id").RelatedSel()
-    cnt, err := qs.All(&tags)
-    if err == nil {
-       beego.Info("Queried", cnt, "tags")
-        for _, tag := range tags {
-            beego.Info(tag.Article)
-        }
-    }
-
+	tag := Tag{}
+	totalNum, _ := tag.Query().Count()
+	postsPerPage := 10
+	paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
+	tag.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&tags)
+	return &tags
 }
-

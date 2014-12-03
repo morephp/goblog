@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="input" class="col-sm-1 control-label">标签</label>
         <div class="col-sm-11">
-          <input type="text" class="form-control" name="tag" placeholder="标签" value="{{range $k, $v := .Tags}}{{$v.Name}},{{end}}">
+          <input type="text" class="form-control" name="tag" placeholder="标签" disabled="disabled"  value="{{range $k, $v := .Tags}}{{$v.Name}},{{end}}">
         </div>
       </div>
       <div class="form-group">
@@ -69,7 +69,7 @@ $(document).ready(function() {
                         }
                     }
                 },
-                category: {
+                tag: {
                     validators: {
                         notEmpty: {
                             message: '分类标签不能为空'

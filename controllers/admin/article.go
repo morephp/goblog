@@ -67,7 +67,7 @@ func (this *ArticleController) Update() {
 	article.Read()
 	article.LoadRelated(&article)
 	this.Data["Title"] = article.Title
-	this.Data["Tags"] = article.Tags
+	this.Data["Tags"] = article.Tag
 	this.Data["Content"] = article.Content
 	this.Data["Id"] = article.Id
 	this.Layout = "admin/layout.tpl"
@@ -87,7 +87,9 @@ func (this *ArticleController) Delete() {
 	this.StopRun()
 	return
 }
+
 func (this *ArticleController) Tag() {
+	this.Data["Tags"] = models.ListTags(this.Ctx)
 	this.Layout = "admin/layout.tpl"
 	this.LayoutSections = make(map[string]string)
 	this.LayoutSections["Sidebar"] = "admin/layout_sidebar.tpl"

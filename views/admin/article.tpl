@@ -27,7 +27,7 @@
         <tr>
           <td>{{$val.Id}}</td>
           <td>{{$val.Title}}</td>
-          <td>{{range $k, $v := $val.Tags}}{{$v.Name}}&nbsp;{{end}}</td>
+          <td>{{range $k, $v := $val.Tag}}{{$v.Name}}&nbsp;{{end}}</td>
           <td>{{$val.Times}}</td>
           <td>{{$val.Author}}</td>
           <td>{{$val.PushTime}}</td>

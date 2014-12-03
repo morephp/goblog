@@ -16,84 +16,46 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>帐　号</th>
-      <th>昵　称</th>
-      <th>团　队</th>
+      <th>标　签</th>
       <th style="width: 3.5em;"></th>
     </tr>
   </thead>
   <tbody>
+  {{range $k, $v := .Tags }}
     <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Tompson</td>
-      <td>the_mark7</td>
+      <td>{{$v.Id}}</td>
+      <td>{{$v.Name}}</td>
       <td>
-          <a href="user.html"><i class="fa fa-pencil"></i></a>
-          <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
+          <a href="/admin/article/tag/?act=update&id={{$v.Id}}"><i class="fa fa-pencil"></i></a>
+          <a href="javascript:void(0)" onclick="dodel({{$v.Id}})" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
       </td>
     </tr>
-    <tr>
-      <td>2</td>
-      <td>Ashley</td>
-      <td>Jacobs</td>
-      <td>ash11927</td>
-      <td>
-          <a href="user.html"><i class="fa fa-pencil"></i></a>
-          <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-      </td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Audrey</td>
-      <td>Ann</td>
-      <td>audann84</td>
-      <td>
-          <a href="user.html"><i class="fa fa-pencil"></i></a>
-          <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-      </td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>John</td>
-      <td>Robinson</td>
-      <td>jr5527</td>
-      <td>
-          <a href="user.html"><i class="fa fa-pencil"></i></a>
-          <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-      </td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Aaron</td>
-      <td>Butler</td>
-      <td>aaron_butler</td>
-      <td>
-          <a href="user.html"><i class="fa fa-pencil"></i></a>
-          <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-      </td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Chris</td>
-      <td>Albert</td>
-      <td>cab79</td>
-      <td>
-          <a href="user.html"><i class="fa fa-pencil"></i></a>
-          <a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-      </td>
-    </tr>
-  </tbody>
+    {{end}}
+   </tbody>
 </table>
-<ul class="pagination">
-  <li><a href="#">&laquo;</a></li>
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-  <li><a href="#">&raquo;</a></li>
-</ul>
+{{if .paginator.HasPages}}
+ <ul class="pagination pagination">
+     {{if .paginator.HasPrev}}
+         <li><a href="{{.paginator.PageLinkFirst}}">首页</a></li>
+         <li><a href="{{.paginator.PageLinkPrev}}">&laquo;</a></li>
+     {{else}}
+         <li class="disabled"><a>首页</a></li>
+         <li class="disabled"><a>&laquo;</a></li>
+     {{end}}
+     {{range $index, $page := .paginator.Pages}}
+         <li{{if $.paginator.IsActive .}} class="active"{{end}}>
+             <a href="{{$.paginator.PageLink $page}}">{{$page}}</a>
+         </li>
+     {{end}}
+     {{if .paginator.HasNext}}
+         <li><a href="{{.paginator.PageLinkNext}}">&raquo;</a></li>
+         <li><a href="{{.paginator.PageLinkLast}}">末页</a></li>
+     {{else}}
+         <li class="disabled"><a>&raquo;</a></li>
+         <li class="disabled"><a>末页</a></li>
+     {{end}}
+ </ul>
+ {{end}}
         <footer>
           <hr>
           <p class="pull-right">&nbsp;</p>
@@ -101,3 +63,31 @@
         </footer>
   </div>
     </div>
+
+     <div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">删除消息</h3>
+        </div>
+        <div class="modal-body">
+            <p class="error-text"><i class="fa fa-warning modal-icon"></i>你是否真的要删除该标签?<br>删除后将不能恢复.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">取 消</button>
+            <a href="#" class="btn btn-danger" id="delete">删 除</a>
+        </div>
+      </div>
+    </div>
+</div>
+    <script type="text/javascript">
+    function dodel(id){        
+        $("#delete").attr('href','/admin/article/tag/?act=del&id='+id);
+        $('.modal').modal('show');
+    }
+    $(function() {
+        $('.btn btn-default').click(function(){return false;});     
+    });
+     
+</script>
