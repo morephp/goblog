@@ -3,7 +3,6 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/morephp/blog/models"
-	"github.com/russross/blackfriday"
 )
 
 type MainController struct {
@@ -11,10 +10,8 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
-	article := models.Article{}
-	article.Query().OrderBy("-id").One(&article)
 
-	this.Data["Content"] = string(blackfriday.MarkdownBasic([]byte(article.Content)))
+	this.Data["Articles"] = models.ListArticleHome(this.Ctx)
 	this.TplNames = "index.tpl"
 }
 

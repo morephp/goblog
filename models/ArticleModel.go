@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/utils/pagination"
+	"github.com/russross/blackfriday"
 	"strings"
 	"time"
 )
@@ -92,6 +93,22 @@ func ListArticle(ctx *context.Context) *[]Article {
 	for k, article := range articles {
 		orm.NewOrm().LoadRelated(&article, "Tag")
 		articles[k] = article
+	}
+	return &articles
+}
+
+func ListArticleHome(ctx *context.Context) *[]Article {
+	article := Article{}
+	articles := []Article{}
+	totalNum, _ := article.Query().Count()
+	postsPerPage := 10
+	paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
+	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
+	for k, article := range articles {
+		orm.NewOrm().LoadRelated(&article, "Tag")
+		article.Content = string(blackfriday.MarkdownBasic([]byte(article.Content)))
+		articles[k] = article
+
 	}
 	return &articles
 }
