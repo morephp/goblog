@@ -15,7 +15,7 @@ type Article struct {
 	Author   string `orm:size(16)`
 	Times    int
 	PushTime time.Time `orm:"auto_now_add;type(datetime)"`
-	Tag      []*Tag    `orm:"rel(m2m);on_delete(on_delete)"`
+	Tag      []*Tag    `orm:"rel(m2m);on_delete(cascade)"`
 }
 
 func init() {
