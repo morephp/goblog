@@ -28,16 +28,25 @@
     <ul class="cbp_tmtimeline">
     {{range $k, $v := .Articles}}
       <li>
-        <time class="cbp_tmtime" datetime="{{$v.PushTime}}"><span>4/10/13</span> <span>18:30</span></time>
-        <div class="cbp_tmicon cbp_tmicon-phone"></div>
+        <time class="cbp_tmtime" datetime="{{$v.PushTime}}"><span>{{dateformat $v.PushTime "06/01/02"}}</span> <span>{{dateformat $v.PushTime "15:04"}}</span></time>
+        <div class="cbp_tmicon cbp_tmicon-earth"></div>
         <div class="cbp_tmlabel">
           <h3>{{$v.Title}}</h3>
           {{$v.Content|str2html}}
           </div>
       </li>
    {{end}}
+       <li>
+             <div class="cbp_tmend"><a href="#" target="_self">More</a></div>
+              <div class="cbp_tmendlabel"></div>
+             </li>
     </ul>
   </div>
 </div>
+<!-- <nav class="navbar navbar-default  navbar-static-bootem" role="navigation">
+  <div class="container">
+  <div class="text-left"></div>
+  </div>
+</nav> -->
 </body>
 </html>

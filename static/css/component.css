@@ -23,6 +23,11 @@
 .cbp_tmicon-mail:before { content: "\e002"; }
 .cbp_tmicon-earth:before { content: "\e003"; }
 
+/* The End */
+.cbp_tmtimeline > li .cbp_tmend { width: 40px; height: 40px; speak: none; text-transform: none; -webkit-font-smoothing: antialiased; position: absolute; color: #fff; background: #90A1AC; border-radius: 50%; box-shadow: 0 0 0 8px #DEE8EF; text-align: center; left: 20%; top: 0; margin: 0 0 0 -25px; font: normal 12px/40px ecoico; }
+.cbp_tmtimeline > li .cbp_tmendlabel { margin: 0 0 15px 25%; background: #F3F6F7; color: #F3F6F7; padding: 1.2em; font-size: 1.2em; font-weight: 300; line-height: 1.4; position: relative; border-radius: 0px; }
+.cbp_tmtimeline > li .cbp_tmend > a{ color: #FFF; text-decoration: none; }
+
 /* Example Media Queries */
 @media screen and (max-width: 65.375em) {
 .cbp_tmtimeline > li .cbp_tmtime span:last-child { font-size: 1.5em; }
