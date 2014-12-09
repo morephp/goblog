@@ -13,11 +13,16 @@
 <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/static/js/modernizr.custom.js" type="text/ecmascript"></script>
-<link rel="stylesheet" type="text/css" href="/static/css/theme.css">
+<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/component.css">
 {{str2html "<!--[if lt IE 9]><script>window.location.href='/static/ltie.html';</script><![endif]-->"}}
 </head>
 <body>
+<nav class="navbar navbar-default  navbar-static-top" role="navigation">
+  <div class="container">
+
+  </div>
+</nav>
 <div class="container">
     <div class="main">
     <ul class="cbp_tmtimeline">
