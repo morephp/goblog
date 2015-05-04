@@ -89,7 +89,6 @@ func ListArticle(ctx *context.Context) *[]Article {
 	postsPerPage := 10
 	paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
 	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
-
 	for k, article := range articles {
 		orm.NewOrm().LoadRelated(&article, "Tag")
 		articles[k] = article
@@ -97,18 +96,15 @@ func ListArticle(ctx *context.Context) *[]Article {
 	return &articles
 }
 
-func ListArticleHome(ctx *context.Context) *[]Article {
+func ListMoreArticle(ctx *context.Context, page int) *[]Article {
 	article := Article{}
 	articles := []Article{}
-	totalNum, _ := article.Query().Count()
-	postsPerPage := 10
-	paginator := pagination.SetPaginator(ctx, postsPerPage, totalNum)
-	article.Query().Limit(postsPerPage, paginator.Offset()).OrderBy("-Id").All(&articles)
+	postsPerPage := 3
+	article.Query().Limit(postsPerPage, (page-1)*postsPerPage).OrderBy("-Id").All(&articles)
 	for k, article := range articles {
 		orm.NewOrm().LoadRelated(&article, "Tag")
 		article.Content = string(blackfriday.MarkdownBasic([]byte(article.Content)))
 		articles[k] = article
-
 	}
 	return &articles
 }

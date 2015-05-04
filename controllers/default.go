@@ -15,11 +15,13 @@ func (this *MainController) Get() {
 	rand.Seed(time.Now().UnixNano())
 	// iconS := []string{"phone","email","screen",	"earth",}
 	// this.Data["Icon"] = iconS[rand.Intn(4)]
-
-	this.Data["Articles"] = models.ListArticleHome(this.Ctx)
+	page, _ := this.GetInt("page")
+	this.Data["Articles"] = models.ListMoreArticle(this.Ctx, page)
 	this.TplNames = "index.tpl"
 }
 
-func (this *MainController) Read() {
-
+func (this *MainController) More() {
+	page, _ := this.GetInt("page")
+	this.Data["Articles"] = models.ListMoreArticle(this.Ctx, page)
+	this.TplNames = "more.tpl"
 }

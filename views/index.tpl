@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-default  navbar-static-top" role="navigation">
   <div class="container">
-
+  MorePHP TEAM
   </div>
 </nav>
 <div class="container">
@@ -37,9 +37,9 @@
       </li>
    {{end}}
        <li>
-             <div class="cbp_tmend"><a href="#" target="_self">More</a></div>
+             <div class="cbp_tmend"><a id="more" href="javascript:;" style="cursor:hand" target="_self">More</a></div>
               <div class="cbp_tmendlabel"></div>
-             </li>
+        </li>
     </ul>
   </div>
 </div>
@@ -48,5 +48,41 @@
   <div class="text-left"></div>
   </div>
 </nav> -->
+<script type="text/javascript">
+    var next_page = 2;
+    var loading = false;
+    function loadMore() {
+        var loading = true;
+        $("#more").html("Loading");
+        jQuery.ajax({
+            url: "/more",
+            data: {
+                page: next_page,
+                pageSize: 1,
+                category: ''
+            },
+            success: function (html) {
+                if (loading) {
+                    $("#more").html("More");
+                    if (!html || html.trim().length <= 0) {
+                        $("#more").html("End");
+                    } else {
+                        $(html).insertAfter($('.cbp_tmtimeline li').eq(-2));
+                        next_page = next_page + 1;
+                    }
+                    loading = false;
+                }
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#more").click(function(){
+    loadMore();
+    $("html,body").animate({scrollTop: $('#more').offset().top}, {duration:"slow"},800);
+  });
+});
+</script>
 </body>
 </html>
