@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/static/css/bootstrap-markdown.min.css">
 <link rel="stylesheet" href="/static/css/bootstrapValidator.css"/>
+<link rel="stylesheet" href="/static/editormd/css/editormd.css" />
 <div class="content">
   <div class="header">
     <div class="stats">
@@ -28,7 +29,9 @@
       <div class="form-group">
         <label for="input" class="col-sm-1 control-label">内 容</label>
         <div class="col-sm-11">
-         <textarea name="content" class="form-control" data-provide="markdown" rows="10" data-width="800" data-iconlibrary="fa" ></textarea>
+         <div id="test-editormd" style="">
+                <textarea style="display:none;"></textarea>
+            </div>
         </div>
       </div>
       <div class="form-group">
@@ -45,44 +48,16 @@
     </footer>
   </div>
 </div>
-<script type="text/javascript" src="/static/js/bootstrap-markdown-editor.js"></script> 
-<script type="text/javascript" src="/static/js/bootstrap-markdown-to.js"></script> 
-<script type="text/javascript" src="/static/js/bootstrap-markdown.js"></script> 
-<script type="text/javascript" src="/static/js/bootstrap-markdown-main.js"></script> 
-<script type="text/javascript" src="/static/js/bootstrapValidator.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#article')
-        .bootstrapValidator({
-            message: '你输入的值无效',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                title: {
-                    validators: {
-                        notEmpty: {
-                            message: '文章标题不能为空'
-                        }
-                    }
-                },
-                tags: {
-                    validators: {
-                        notEmpty: {
-                            message: '标签不能为空'
-                        }
-                    }
-                },
-				content: {
-                    validators: {
-                        notEmpty: {
-                            message: '文章内容不能为空'
-                        }
-                    }
-                }
-            }
-        })
-});
-</script>
+
+ <script src="/static/js/jquery-1.11.1.min.js"></script>
+        <script src="/static/editormd/editormd.amd.js"></script>
+        <script type="text/javascript">
+        var testEditor;
+            $(function() {
+                testEditor = editormd("test-editormd", {
+                    width   : "100%",
+                    height  : 640,
+                    path    : "/static/editormd/lib/"
+                });
+            });
+        </script>

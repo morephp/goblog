@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-default  navbar-static-top" role="navigation">
   <div class="container">
-  MorePHP TEAM
+  <center><h1>MorePHP TEAM Blog</h1></center>
   </div>
 </nav>
 <div class="container">

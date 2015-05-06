@@ -22,7 +22,7 @@ func (this *ArticleController) Index() {
 func (this *ArticleController) Add() {
 	if this.Ctx.Input.IsPost() {
 		article := models.Article{}
-		article.Content = this.GetString("content")
+		article.Content = this.GetString("test-editormd-markdown-doc")
 		article.Title = this.GetString("title")
 		if author, ok := this.GetSession("nickname").(string); ok {
 			article.Author = author
@@ -48,7 +48,7 @@ func (this *ArticleController) Update() {
 	article := models.Article{}
 	if this.Ctx.Input.IsPost() {
 		article.Id, _ = this.GetInt("id")
-		article.Content = this.GetString("content")
+		article.Content = this.GetString("test-editormd-markdown-doc")
 		// article.Tags = this.GetString("tags")
 		article.Title = this.GetString("title")
 		if author, ok := this.GetSession("nickname").(string); ok {
